@@ -4,11 +4,11 @@ import taskmanager.Process;
 public class MainPriority {
     public static void main(String[] args) {
 
-        TaskManager taskManagerPriority = new TaskManagerPriority(3);
-        Process chrome = new Process(Priority.LOW, "Chrome");
-        Process calendar = new Process(Priority.MEDIUM, "Calendar");
-        Process windows = new Process(Priority.HIGH, "Windows");
-        Process antivirus = new Process(Priority.HIGH, "Antivirus");
+        TaskManager taskManagerPriority = TaskManagerPriority.getInstance(3);
+        Process chrome = new Process(ProcessPriority.LOW, "Chrome");
+        Process calendar = new Process(ProcessPriority.MEDIUM, "Calendar");
+        Process windows = new Process(ProcessPriority.HIGH, "Windows");
+        Process antivirus = new Process(ProcessPriority.HIGH, "Antivirus");
 
         taskManagerPriority.addProcess(calendar);
         taskManagerPriority.addProcess(chrome);
@@ -22,7 +22,7 @@ public class MainPriority {
 
         taskManagerPriority.listByCreationTime();
 
-        taskManagerPriority.killProcessesWithPriority(Priority.HIGH);
+        taskManagerPriority.killProcessesWithPriority(ProcessPriority.HIGH);
 
         taskManagerPriority.listByCreationTime();
 

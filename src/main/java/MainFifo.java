@@ -1,4 +1,4 @@
-import taskmanager.Priority;
+import taskmanager.ProcessPriority;
 import taskmanager.Process;
 import taskmanager.TaskManager;
 import taskmanager.TaskManagerFIFO;
@@ -6,11 +6,11 @@ import taskmanager.TaskManagerFIFO;
 public class MainFifo {
     public static void main(String[] args) {
 
-        TaskManager taskManagerFifo = new TaskManagerFIFO(3);
-        Process chrome = new Process(Priority.LOW, "Chrome");
-        Process calendar = new Process(Priority.MEDIUM, "Calendar");
-        Process windows = new Process(Priority.HIGH, "Windows");
-        Process antivirus = new Process(Priority.HIGH, "Antivirus");
+        TaskManager taskManagerFifo = TaskManagerFIFO.getInstance(3);
+        Process chrome = new Process(ProcessPriority.LOW, "Chrome");
+        Process calendar = new Process(ProcessPriority.MEDIUM, "Calendar");
+        Process windows = new Process(ProcessPriority.HIGH, "Windows");
+        Process antivirus = new Process(ProcessPriority.HIGH, "Antivirus");
 
         taskManagerFifo.addProcess(calendar);
         taskManagerFifo.addProcess(chrome);
@@ -24,7 +24,7 @@ public class MainFifo {
 
         taskManagerFifo.listByCreationTime();
 
-        taskManagerFifo.killProcessesWithPriority(Priority.HIGH);
+        taskManagerFifo.killProcessesWithPriority(ProcessPriority.HIGH);
 
         taskManagerFifo.listByCreationTime();
 

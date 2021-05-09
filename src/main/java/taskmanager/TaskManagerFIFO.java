@@ -2,19 +2,22 @@ package taskmanager;
 
 public class TaskManagerFIFO extends TaskManager {
 
-    public TaskManagerFIFO(int capacity) {
+    private static TaskManagerFIFO instance;
+
+    private TaskManagerFIFO(int capacity) {
         this.maxCapacity = capacity;
+    }
+
+    public static TaskManagerFIFO getInstance(int capacity) {
+        return (instance == null) ? new TaskManagerFIFO(capacity) : instance;
     }
 
     public void addProcess(Process process) {
         if (maxCapacity <= processes.size()) {
             killProcess(getEldestProcess());
         }
-        Integer generatePid = generatePid();
-        processes.put(generatePid, process);
-        process.setPid(generatePid);
+        processes.put(process.getPid(), process);
     }
-
 
     private Process getEldestProcess() {
         return processes.entrySet().iterator().next().getValue();

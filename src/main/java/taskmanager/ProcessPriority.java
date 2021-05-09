@@ -1,6 +1,6 @@
 package taskmanager;
 
-public enum Priority {
+public enum ProcessPriority {
     HIGH,
     MEDIUM,
     LOW;

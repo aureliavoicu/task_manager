@@ -5,8 +5,14 @@ import java.util.Optional;
 
 public class TaskManagerPriority extends TaskManager {
 
-    public TaskManagerPriority(int capacity) {
+    private static TaskManagerPriority instance;
+
+    private TaskManagerPriority(int capacity) {
         this.maxCapacity = capacity;
+    }
+
+    public static TaskManagerPriority getInstance(int capacity) {
+        return (instance == null) ? new TaskManagerPriority(capacity) : instance;
     }
 
     public void addProcess(Process process) {
@@ -18,9 +24,7 @@ public class TaskManagerPriority extends TaskManager {
                 return;
             }
         }
-        Integer generatePid = generatePid();
-        processes.put(generatePid, process);
-        process.setPid(generatePid);
+        processes.put(process.getPid(), process);
     }
 
     private Optional<Process> getProcessWithLowerPriority(Process process) {
